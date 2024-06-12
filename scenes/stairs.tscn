@@ -1,10 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://cuysx082yllt4"]
+[gd_scene load_steps=5 format=3 uid="uid://cvfnco6wjrlyo"]
 
-[ext_resource type="Texture2D" uid="uid://b7a2rhyvkf8e3" path="res://assets/v1.1 dungeon crawler 16X16 pixel pack/full tilemap.png" id="1_2owck"]
-[ext_resource type="Script" path="res://scripts/stairs.gd" id="1_n5vby"]
+[sub_resource type="GDScript" id="GDScript_gcd7j"]
+script/source = "extends StaticBody2D
+
+
+
+# Signal handler for when a body enters the StaticBody2D
+func _on_StaticBody2D_body_entered(body):
+	if body.is_in_group(\"character\"):
+		print(\"Character entered the StaticBody2D\")
+
+
+
+"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fjcpw"]
-atlas = ExtResource("1_2owck")
 region = Rect2(16, 48, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wj2cs"]
@@ -22,7 +32,7 @@ animations = [{
 size = Vector2(12, 12)
 
 [node name="StaticBody2D" type="StaticBody2D"]
-script = ExtResource("1_n5vby")
+script = SubResource("GDScript_gcd7j")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wj2cs")

@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://ch2fgxcugx6if" path="res://assets/charackter.png" id="2_kr66l"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_usmc6"]
-radius = 1.0
-height = 8.02408
+radius = 2.99977
+height = 13.9989
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_54460"]
 atlas = ExtResource("2_kr66l")
@@ -38,8 +38,8 @@ animations = [{
 script = ExtResource("1_a3jwx")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 7)
-rotation = -1.55845
+position = Vector2(-1, 1)
+rotation = 0.000671029
 shape = SubResource("CapsuleShape2D_usmc6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -50,9 +50,8 @@ frame_progress = 0.283286
 [node name="Area2D" type="Area2D" parent="." groups=["player"]]
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-1, 7)
-rotation = -1.55845
+position = Vector2(-1, 1)
+rotation = 0.000671029
 shape = SubResource("CapsuleShape2D_usmc6")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
-[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

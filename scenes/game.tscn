@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://crsy26lmc6qfh"]
+[gd_scene load_steps=7 format=3 uid="uid://crsy26lmc6qfh"]
 
 [ext_resource type="PackedScene" uid="uid://bu8760t64vcka" path="res://scenes/player.tscn" id="1_2hxyx"]
 [ext_resource type="Texture2D" uid="uid://b52fckappqh2e" path="res://assets/blocks.png" id="2_s0duk"]
+[ext_resource type="PackedScene" uid="uid://0075j8woqcrt" path="res://scenes/spring.tscn" id="3_w6ith"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3p3co"]
 texture = ExtResource("2_s0duk")
@@ -12,19 +13,43 @@ texture = ExtResource("2_s0duk")
 0:1/0 = 0
 0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:1/0/physics_layer_0/angular_velocity = 0.0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
 1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+2:1/0 = 0
+2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_0/angular_velocity = 0.0
+0:2/0 = 0
+0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_0/angular_velocity = 0.0
+1:2/0 = 0
+1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:2/0/physics_layer_0/angular_velocity = 0.0
+2:2/0 = 0
+2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:2/0/physics_layer_0/angular_velocity = 0.0
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_ot3gc"]
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_3p3co")
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_r2jna"]
+distance = -272.0
+
 [node name="Game" type="Node2D"]
+position = Vector2(0, -1)
 
 [node name="player" parent="." instance=ExtResource("1_2hxyx")]
 top_level = true
-position = Vector2(-32, 27)
+position = Vector2(0, 20)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 position = Vector2(0, -2)
@@ -32,13 +57,28 @@ zoom = Vector2(4, 4)
 position_smoothing_enabled = true
 
 [node name="TileMap" type="TileMap" parent="."]
-position = Vector2(-17, 6)
+position = Vector2(0, 3.57628e-07)
 scale = Vector2(0.946807, 0.970873)
 tile_set = SubResource("TileSet_ot3gc")
 format = 2
 layer_0/name = "Walls"
-layer_0/tile_data = PackedInt32Array(196605, 1, 0, 196606, 1, 0, 196607, 1, 0, 262141, 65537, 0, 262142, 65537, 0, 262143, 65537, 0, 131072, 1, 0, 196608, 65537, 0, 262144, 65537, 0, 327679, 65537, 0, 327678, 65537, 0, 327677, 65537, 0, 393213, 1, 1, 393214, 1, 1, 393215, 1, 1, 327680, 1, 1)
+layer_0/tile_data = PackedInt32Array(196605, 1, 0, 196606, 1, 0, 196607, 1, 0, 262141, 65537, 0, 262142, 65537, 0, 262143, 65537, 0, 131072, 1, 0, 196608, 65537, 0, 262144, 65537, 0, 327679, 65537, 0, 327678, 65537, 0, 327677, 65537, 0, 393213, 1, 1, 393214, 1, 1, 393215, 1, 1, 196609, 65537, 0, 196604, 1, 0, 262140, 65537, 0, 327676, 65537, 0, 393212, 65537, 0, 196610, 65537, 0, -196612, 1, 0, -196611, 1, 0, -131075, 65537, 0, -196610, 1, 0, -196615, 1, 0, -196614, 1, 0, -131078, 65537, 0, -196613, 1, 0, -131077, 65537, 0, -65541, 65537, 0, -5, 65537, 0, -131076, 65537, 0, -65540, 65537, 0, 131074, 1, 0, 131073, 1, 0, 196603, 1, 0, 196602, 1, 0, 262138, 65537, 0, 262139, 65537, 0, 327675, 65537, 0, 458749, 1, 1, 458750, 1, 1, 131075, 1, 0, 196601, 1, 0, 458751, 1, 1, 524286, 1, 1, 131077, 1, 0, 131078, 1, 0, 131079, 1, 0, 196614, 65537, 0, 262150, 1, 1, 196615, 1, 1, 196613, 1, 1, 131084, 1, 0, 131083, 1, 0, 196620, 65537, 0, 131085, 1, 0)
 layer_1/name = "Base"
 layer_1/tile_data = PackedInt32Array(131067, 196614, 5, 65531, 196614, 5, -262141, 196614, 5, -262137, 262150, 5, 131074, 458752, 5, 131073, 393216, 5, 131072, 131078, 7, 196607, 131078, 7, 196606, 131078, 7, 196605, 131078, 7, 196604, 131078, 7, 196603, 65542, 7, -65540, 131078, 6, -65539, 131078, 6, -65538, 131078, 6, -65537, 131078, 6, -131072, 131078, 6, -131071, 131078, 6, -131070, 131078, 6, -131069, 196614, 6, -5, 196614, 5, -196605, 196614, 5, -196601, 262150, 5, -131065, 262150, 5, -65529, 262150, 5, 7, 262150, 5, 65543, 262150, 5, 131079, 327686, 7, 131078, 131078, 7, 131077, 131078, 7, 131076, 131078, 7, 131075, 131078, 7, -65541, 65542, 6, 131068, 196614, 2, 131069, 262150, 2, 131070, 262150, 2, 131071, 262150, 3, 65536, 262150, 3, 0, 196614, 2, 65535, 262150, 3, 65534, 196614, 2, 65533, 196614, 2, 1, 262150, 3, 65537, 262150, 3, 65538, 131078, 3, -327677, 65542, 6, -327673, 327686, 6, -327676, 131078, 7, -327675, 131078, 7, -327674, 131078, 7, 2, 131078, 2, 3, 196614, 2, 65539, 131078, 2, 4, 131078, 2, 65540, 131078, 3, 5, 196614, 2, 65541, 196614, 3, 6, 262150, 2, 65542, 262150, 3, -196604, 131078, 2, -131068, 196614, 2, -196603, 196614, 2, -131067, 131078, 2, -196602, 262150, 2, -131066, 262150, 2, -65532, 196614, 3, -65531, 131078, 2, -65530, 262150, 3, 65532, 131078, 1, 196609, 393216, 6, 196610, 458752, 6)
 layer_2/name = "Deko"
 layer_2/tile_data = PackedInt32Array(-1, 262150, 0, -262139, 262150, 0)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="StaticBody2D" groups=["death"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/Area2D"]
+shape = SubResource("WorldBoundaryShape2D_r2jna")
+
+[node name="spring" parent="." instance=ExtResource("3_w6ith")]
+position = Vector2(22, 24)
+
+[node name="spring2" parent="." instance=ExtResource("3_w6ith")]
+position = Vector2(114, 24)
+
+[connection signal="area_entered" from="StaticBody2D/Area2D" to="player" method="_on_area_2d_area_entered"]
