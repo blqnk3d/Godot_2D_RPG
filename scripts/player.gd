@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+class_name Player
 
 const SPEED = 100.0
 const JUMP_VELOCITY = -250.0
@@ -7,11 +8,15 @@ const JUMP_VELOCITY = -250.0
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+var health = 100
+
 @onready var sprite = $AnimatedSprite2D
 @onready var player = $"."
-
+@onready var hpBar = $ProgressBar
 
 func _physics_process(delta):
+	hpBar.value = health
+	
 	sprite.play("idle")
 	# Add the gravity.
 	if not is_on_floor():
