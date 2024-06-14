@@ -1,12 +1,13 @@
 extends StaticBody2D
 
-var inv = []
+class_name  Chest
 
+var inv = []
+var opened = false
+var inreach = false
 
 func _init():
 	pass
-
-
 
 func _ready():
 	pass # Replace with function body.
@@ -17,8 +18,18 @@ func _process(delta):
 	pass
 	
 func showInventory():
+	if  inreach == false :
+		return
 	for i in inv:
 		print(i)
 	
 	
 	
+
+
+func _on_area_2d_area_entered(area):
+	inreach = true
+
+
+func _on_area_2d_area_exited(area):
+	inreach = false
