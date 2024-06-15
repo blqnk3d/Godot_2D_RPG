@@ -20,7 +20,6 @@ var coins = 0
 @onready var player = $"."
 @onready var hpBar = $ProgressBar
 @onready var showDebug = $Label
-@onready var chest = $"../chest"
 
 
 func _physics_process(delta):
