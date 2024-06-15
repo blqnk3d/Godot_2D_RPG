@@ -56,7 +56,7 @@ shape = SubResource("RectangleShape2D_8ce8b")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_w0k30")
-frame_progress = 0.877867
+frame_progress = 0.194985
 
 [node name="Area2D" type="Area2D" parent="." groups=["coin"]]
 

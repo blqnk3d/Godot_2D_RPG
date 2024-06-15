@@ -2,7 +2,7 @@ extends StaticBody2D
 
 class_name  Chest
 
-var inv = []
+var inv = [item.new("test",1)]
 var opened = false
 var inreach = false
 
