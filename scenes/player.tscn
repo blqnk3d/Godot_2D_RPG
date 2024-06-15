@@ -3,10 +3,6 @@
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_a3jwx"]
 [ext_resource type="Texture2D" uid="uid://ch2fgxcugx6if" path="res://assets/charackter.png" id="2_kr66l"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_usmc6"]
-radius = 2.99977
-height = 13.9989
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_54460"]
 atlas = ExtResource("2_kr66l")
 region = Rect2(0, 0, 16, 16)
@@ -34,25 +30,17 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lklv8"]
+size = Vector2(9, 7.5)
+
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_a3jwx")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 1)
-rotation = 0.000671029
-shape = SubResource("CapsuleShape2D_usmc6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_b8lc6")
 animation = &"idle"
 frame_progress = 0.283286
-
-[node name="Area2D" type="Area2D" parent="." groups=["player"]]
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-1, 1)
-rotation = 0.000671029
-shape = SubResource("CapsuleShape2D_usmc6")
+offset = Vector2(0, 0.5)
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 offset_left = -13.0
@@ -61,4 +49,6 @@ offset_right = 13.0
 offset_bottom = -8.0
 show_percentage = false
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 4.75)
+shape = SubResource("RectangleShape2D_lklv8")
