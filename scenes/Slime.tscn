@@ -7,10 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://bjteu4yeri36s" path="res://scenes/Components/health_bar_component.tscn" id="5_3rgcl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oupc6"]
-size = Vector2(15, 9)
+size = Vector2(16, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e7lkx"]
-size = Vector2(13, 7)
+size = Vector2(12, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2j8vi"]
 atlas = ExtResource("3_w783j")
@@ -53,7 +53,8 @@ script = ExtResource("1_cqude")
 sprite = NodePath("AnimatedSprite2D")
 
 [node name="HealthBarComponent" parent="." node_paths=PackedStringArray("health") instance=ExtResource("5_3rgcl")]
-position = Vector2(0, -3)
+modulate = Color(1, 0, 0, 1)
+position = Vector2(0, 10)
 health = NodePath("../HealthComponent")
 
 [node name="HealthComponent" parent="." instance=ExtResource("1_wf46v")]
@@ -62,15 +63,16 @@ health = NodePath("../HealthComponent")
 healthComponent = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
-position = Vector2(-0.5, 3.5)
+position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_oupc6")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(-0.5, 4.5)
+position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_e7lkx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0.5, 0)
 sprite_frames = SubResource("SpriteFrames_finev")
-frame_progress = 0.940507
+frame_progress = 0.835438

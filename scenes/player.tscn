@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://bu8760t64vcka"]
+[gd_scene load_steps=12 format=3 uid="uid://bu8760t64vcka"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_a3jwx"]
+[ext_resource type="PackedScene" uid="uid://bjteu4yeri36s" path="res://scenes/Components/health_bar_component.tscn" id="2_2p0w6"]
 [ext_resource type="Texture2D" uid="uid://ch2fgxcugx6if" path="res://assets/charackter.png" id="2_kr66l"]
 [ext_resource type="PackedScene" uid="uid://c6hslp0sthus8" path="res://scenes/Components/hitbox_component.tscn" id="3_d7814"]
 [ext_resource type="PackedScene" uid="uid://c7gy5cmgru4mt" path="res://scenes/Components/health_component.tscn" id="4_lkar6"]
@@ -37,9 +38,15 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("weapon")]
+[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("weapon", "healthbar")]
 script = ExtResource("1_a3jwx")
 weapon = NodePath("Weapon")
+healthbar = NodePath("HealthBarComponent")
+
+[node name="HealthBarComponent" parent="." node_paths=PackedStringArray("health") instance=ExtResource("2_2p0w6")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(0, -14)
+health = NodePath("../HitboxComponent/HealthComponent")
 
 [node name="Weapon" parent="." instance=ExtResource("6_kvct1")]
 position = Vector2(10, 0)
@@ -53,13 +60,6 @@ sprite_frames = SubResource("SpriteFrames_b8lc6")
 animation = &"idle"
 offset = Vector2(0, 0.5)
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
-offset_left = -13.0
-offset_top = -13.0
-offset_right = 13.0
-offset_bottom = -8.0
-show_percentage = false
-
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("healthComponent") instance=ExtResource("3_d7814")]
 healthComponent = NodePath("HealthComponent")
 
@@ -72,5 +72,3 @@ shape = SubResource("RectangleShape2D_lklv8")
 
 [node name="AttackComponent" parent="." instance=ExtResource("5_1dew4")]
 attackDmg = 10.0
-
-[connection signal="area_entered" from="HitboxComponent" to="." method="_on_hitbox_component_area_entered"]

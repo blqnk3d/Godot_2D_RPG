@@ -10,21 +10,20 @@ var maxHP = 100
 var defence = 5
 
 @export var weapon : Weapon
+@export var healthbar : HealthBarComponent
 
 @onready var sprite = $AnimatedSprite2D
 @onready var player = $"."
-@onready var hpBar = $ProgressBar
 
 var currentAreaToAttack : HitboxComponent= null
 @onready var getoffsetWeapon = weapon.position.x # Temp solution 
 
 func _physics_process(delta):
-	hpBar.value = health
+	healthbar.health.health = health
 	sprite.play("idle")
 	
 	if Input.is_action_just_pressed("attack"):
-		if currentAreaToAttack != null:
-			weapon.damage(currentAreaToAttack)
+			weapon.damage()
 			
 
 	# Get the input direction and handle the movement/deceleration.
@@ -58,7 +57,5 @@ func _physics_process(delta):
 
 
 
-func _on_hitbox_component_area_entered(area):
-	if area is HitboxComponent :
-		currentAreaToAttack = area
+
 		

@@ -91,12 +91,12 @@ layer_1/tile_data = PackedInt32Array(-262142, 589825, 0, -262141, 655361, 0, -26
 layer_2/name = "Erhöht"
 layer_2/tile_data = PackedInt32Array(-196620, 1, 2, -196619, 65537, 2, -196618, 65537, 2, -196617, 65537, 2, -262156, 1, 1, -327692, 1, 0, -327691, 65537, 0, -327690, 65537, 0, -327689, 65537, 0, -327688, 131073, 0, -262152, 131073, 3, -196616, 131073, 2, -262153, 65537, 1, -262154, 65537, 1, -262155, 65537, 1, 65524, 1, 2, 65525, 131073, 2, -12, 1, 0, -11, 131073, 0)
 
+[node name="Slime" parent="." instance=ExtResource("3_3h6yo")]
+position = Vector2(-88, 5)
+
 [node name="player" parent="." instance=ExtResource("1_2hxyx")]
 position = Vector2(-116, -31)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 zoom = Vector2(3.5, 3.5)
 position_smoothing_enabled = true
-
-[node name="Slime" parent="." instance=ExtResource("3_3h6yo")]
-position = Vector2(-88, 5)

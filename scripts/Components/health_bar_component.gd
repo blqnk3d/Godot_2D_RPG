@@ -1,6 +1,6 @@
 extends Node2D
 
-
+class_name  HealthBarComponent
 @export var health : HealthComponent
 @onready var bar = $ProgressBar
 # Called when the node enters the scene tree for the first time.
