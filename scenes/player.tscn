@@ -1,13 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://bu8760t64vcka"]
+[gd_scene load_steps=11 format=3 uid="uid://bu8760t64vcka"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_a3jwx"]
 [ext_resource type="Texture2D" uid="uid://ch2fgxcugx6if" path="res://assets/charackter.png" id="2_kr66l"]
+[ext_resource type="PackedScene" uid="uid://c6hslp0sthus8" path="res://scenes/Components/hitbox_component.tscn" id="3_d7814"]
+[ext_resource type="PackedScene" uid="uid://c7gy5cmgru4mt" path="res://scenes/Components/health_component.tscn" id="4_lkar6"]
+[ext_resource type="PackedScene" uid="uid://cvlar5mhenqag" path="res://scenes/Components/attack_component.tscn" id="5_1dew4"]
+[ext_resource type="PackedScene" uid="uid://b0fyyvjp4j5bd" path="res://scenes/weapon.tscn" id="6_kvct1"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_54460"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lklv8"]
+size = Vector2(9, 7.5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wuwa4"]
 atlas = ExtResource("2_kr66l")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sts3q"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_glimy"]
 atlas = ExtResource("2_kr66l")
 region = Rect2(16, 0, 16, 16)
 
@@ -15,10 +22,10 @@ region = Rect2(16, 0, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_54460")
+"texture": SubResource("AtlasTexture_wuwa4")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_sts3q")
+"texture": SubResource("AtlasTexture_glimy")
 }],
 "loop": true,
 "name": &"idle",
@@ -30,16 +37,20 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lklv8"]
-size = Vector2(9, 7.5)
-
-[node name="player" type="CharacterBody2D"]
+[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("weapon")]
 script = ExtResource("1_a3jwx")
+weapon = NodePath("Weapon")
+
+[node name="Weapon" parent="." instance=ExtResource("6_kvct1")]
+position = Vector2(10, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 4.75)
+shape = SubResource("RectangleShape2D_lklv8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_b8lc6")
 animation = &"idle"
-frame_progress = 0.283286
 offset = Vector2(0, 0.5)
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
@@ -49,6 +60,17 @@ offset_right = 13.0
 offset_bottom = -8.0
 show_percentage = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("healthComponent") instance=ExtResource("3_d7814")]
+healthComponent = NodePath("HealthComponent")
+
+[node name="HealthComponent" parent="HitboxComponent" instance=ExtResource("4_lkar6")]
+MAX_HEALTH = 100.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 position = Vector2(-1, 4.75)
 shape = SubResource("RectangleShape2D_lklv8")
+
+[node name="AttackComponent" parent="." instance=ExtResource("5_1dew4")]
+attackDmg = 10.0
+
+[connection signal="area_entered" from="HitboxComponent" to="." method="_on_hitbox_component_area_entered"]

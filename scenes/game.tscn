@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://crsy26lmc6qfh"]
+[gd_scene load_steps=6 format=3 uid="uid://crsy26lmc6qfh"]
 
 [ext_resource type="PackedScene" uid="uid://bu8760t64vcka" path="res://scenes/player.tscn" id="1_2hxyx"]
 [ext_resource type="Texture2D" uid="uid://b52fckappqh2e" path="res://assets/blocks.png" id="2_s0duk"]
+[ext_resource type="PackedScene" uid="uid://dlrcafqk01g4e" path="res://scenes/Slime.tscn" id="3_3h6yo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n1ma6"]
 texture = ExtResource("2_s0duk")
@@ -67,6 +68,9 @@ texture = ExtResource("2_s0duk")
 2:4/0 = 0
 2:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:4/0/physics_layer_0/angular_velocity = 0.0
+11:1/0 = 0
+11:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+11:1/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_ot3gc"]
 physics_layer_0/collision_layer = 1
@@ -93,3 +97,6 @@ position = Vector2(-116, -31)
 [node name="Camera2D" type="Camera2D" parent="player"]
 zoom = Vector2(3.5, 3.5)
 position_smoothing_enabled = true
+
+[node name="Slime" parent="." instance=ExtResource("3_3h6yo")]
+position = Vector2(-88, 5)
