@@ -1,7 +1,7 @@
 extends Node2D
 
 
-@export var sprite : AnimatedSprite2D
+@export var sprite : Texture2D
 @export var timeBetween = 0.25
 @export var movementUpAndDown = 1
 var down = true

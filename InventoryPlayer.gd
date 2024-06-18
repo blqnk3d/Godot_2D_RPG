@@ -8,12 +8,22 @@ class_name PlayerInv
 
 
 func add (item : InvItem):
-	print(item in items)
 	if item in items:
 		var index = items.find(item )
 		if index != -1:
-			items[index].amount += 1
-			return
+			if item:
+				items[index].amount += item.amount
+				return
 	else:
-		items.append(item)
-	print(items)
+		for i in range(items.size()):
+			if items[i] == null:
+				items[i] = item
+				print(items)
+				return
+
+func clearUpItems():
+	for i in range(items.size()):
+		if items[i] != null:
+			var item : InvItem = items[i]
+			if item.amount == 0 :
+				items[i] = null

@@ -10,6 +10,7 @@ func _ready():
 	
 
 func _process(delta):	
+	update_slots()
 	if  Input.is_action_just_pressed("interact"):
 		if is_open:
 			close()

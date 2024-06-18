@@ -10,11 +10,18 @@ class_name InvItem
 
 func use():
 	if  usage == "noUse":
+		print("cant be used")
 		return
-	
+		
 	if usage == "heal1":
-		pass
+		print("should have healt 10hp")
+	
 	if amount - 1 <= 0 :
-		pass
+		texture = null
+		
+		return
 	else:
 		amount -= 1
+	
+	
+	

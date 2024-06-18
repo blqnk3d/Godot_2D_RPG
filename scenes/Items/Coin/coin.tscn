@@ -53,6 +53,7 @@ sprite_frames = SubResource("SpriteFrames_ow61o")
 frame_progress = 0.945644
 
 [node name="PickUpComponent" parent="." instance=ExtResource("2_y6scw")]
+script = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickUpComponent"]
 position = Vector2(0, 1)

@@ -20,7 +20,10 @@ var currentAreaToAttack : HitboxComponent= null
 @onready var getoffsetWeapon = weapon.position.x # Temp solution 
 
 
+
+
 func _physics_process(delta):
+	invPlayer.clearUpItems()
 	healthbar.health.health = health
 	sprite.play("idle")
 	

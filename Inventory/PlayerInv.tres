@@ -1,8 +1,7 @@
-[gd_resource type="Resource" script_class="PlayerInv" load_steps=3 format=3 uid="uid://bb252dvlmgjao"]
+[gd_resource type="Resource" script_class="PlayerInv" load_steps=2 format=3 uid="uid://bb252dvlmgjao"]
 
-[ext_resource type="Resource" uid="uid://dpwc4c7171os4" path="res://scenes/Items/Coin/Coin.tres" id="1_wbdi8"]
 [ext_resource type="Script" path="res://InventoryPlayer.gd" id="2_c61av"]
 
 [resource]
 script = ExtResource("2_c61av")
-items = [ExtResource("1_wbdi8"), null, null, null, null, null, null, null, null, null, null, null]
+items = Array[Resource("res://Inventory/inventory_Item.gd")]([null, null, null, null, null, null, null, null, null, null, null, null])
