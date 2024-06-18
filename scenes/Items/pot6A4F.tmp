@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://0d1ha7altqp4"]
+
+[ext_resource type="Texture2D" uid="uid://c15ar8xp3okcj" path="res://assets/items.png" id="1_5jkgp"]
+[ext_resource type="PackedScene" uid="uid://bjmyjim86esjb" path="res://scenes/Components/pickUp_component.tscn" id="1_cgbam"]
+[ext_resource type="Script" path="res://scripts/Items/potion.gd" id="1_qjfa6"]
+[ext_resource type="PackedScene" uid="uid://dvhajegw45a2g" path="res://scenes/Components/itemAnimation_component.tscn" id="2_ks003"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5woh5"]
+atlas = ExtResource("1_5jkgp")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vviea"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5woh5")
+}],
+"loop": true,
+"name": &"full",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ntvj5"]
+radius = 3.0
+
+[node name="Potion" type="Node2D" node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_qjfa6")
+amount = 3
+sprite = NodePath("AnimatedSprite2D")
+displayName = "Potion"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_vviea")
+animation = &"full"
+
+[node name="ItemAnimationComponent" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("2_ks003")]
+sprite = NodePath("../AnimatedSprite2D")
+timeBetween = 0.15
+movementUpAndDown = 5
+
+[node name="PickUpComponent" parent="." node_paths=PackedStringArray("itemToAdd") instance=ExtResource("1_cgbam")]
+itemToAdd = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickUpComponent"]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_ntvj5")

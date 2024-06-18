@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 class_name Player
 
-const SPEED = 100.0
+const SPEED = 90.0
 
 
 var health = 100
@@ -11,6 +11,7 @@ var defence = 5
 
 @export var weapon : Weapon
 @export var healthbar : HealthBarComponent
+@export var invPlayer : PlayerInv
 
 @onready var sprite = $AnimatedSprite2D
 @onready var player = $"."
@@ -18,12 +19,14 @@ var defence = 5
 var currentAreaToAttack : HitboxComponent= null
 @onready var getoffsetWeapon = weapon.position.x # Temp solution 
 
+
 func _physics_process(delta):
 	healthbar.health.health = health
 	sprite.play("idle")
 	
 	if Input.is_action_just_pressed("attack"):
 			weapon.damage()
+	
 			
 
 	# Get the input direction and handle the movement/deceleration.
@@ -51,11 +54,4 @@ func _physics_process(delta):
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-
 	move_and_slide()
-	
-
-
-
-
-		

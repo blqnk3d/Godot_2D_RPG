@@ -46,6 +46,9 @@ weapon = NodePath("Weapon")
 healthbar = NodePath("HealthBarComponent")
 invPlayer = ExtResource("2_v8hyq")
 
+[node name="HealthComponent" parent="." instance=ExtResource("4_lkar6")]
+MAX_HEALTH = 100.0
+
 [node name="InvUi" parent="." instance=ExtResource("3_2xybm")]
 offset_left = -42.0
 offset_top = -85.0
@@ -55,7 +58,7 @@ offset_bottom = -21.0
 [node name="HealthBarComponent" parent="." node_paths=PackedStringArray("health") instance=ExtResource("2_2p0w6")]
 modulate = Color(0, 0, 0, 1)
 position = Vector2(0, -14)
-health = NodePath("../HitboxComponent/HealthComponent")
+health = NodePath("../HealthComponent")
 
 [node name="Weapon" parent="." instance=ExtResource("6_kvct1")]
 position = Vector2(10, 0)
@@ -70,10 +73,7 @@ animation = &"idle"
 offset = Vector2(0, 0.5)
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("healthComponent") instance=ExtResource("3_d7814")]
-healthComponent = NodePath("HealthComponent")
-
-[node name="HealthComponent" parent="HitboxComponent" instance=ExtResource("4_lkar6")]
-MAX_HEALTH = 100.0
+healthComponent = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" groups=["player"]]
 position = Vector2(-1, 4.75)

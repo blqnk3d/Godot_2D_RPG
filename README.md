@@ -5,6 +5,7 @@
 
 ## todo all
 - improve hitboxes [stairs]
+- Fix problem with the adding to Inventory and than deleting it 
 
 
 ## todo sprite

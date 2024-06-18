@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://grhjtevdbqms"]
+
+[ext_resource type="Texture2D" uid="uid://d3qvnm8g1kav3" path="res://assets/ItemSlot.png" id="1_2mjcx"]
+[ext_resource type="Script" path="res://Inventory/inv_item_slot.gd" id="1_fx0xo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_owrs7"]
+font_size = 6
+
+[node name="InvItemSlot" type="Panel"]
+custom_minimum_size = Vector2(16, 16)
+offset_right = 16.0
+offset_bottom = 16.0
+script = ExtResource("1_fx0xo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_2mjcx")
+centered = false
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="ItemDisplay" type="Sprite2D" parent="CenterContainer/Panel"]
+
+[node name="Button" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+offset_left = 1.0
+offset_top = -2.0
+offset_right = 5.0
+offset_bottom = 10.0
+label_settings = SubResource("LabelSettings_owrs7")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
