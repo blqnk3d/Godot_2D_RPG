@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://crsy26lmc6qfh"]
+[gd_scene load_steps=8 format=3 uid="uid://crsy26lmc6qfh"]
 
-[ext_resource type="PackedScene" uid="uid://bu8760t64vcka" path="res://scenes/player.tscn" id="1_2hxyx"]
+[ext_resource type="PackedScene" uid="uid://bu8760t64vcka" path="res://scenes/Entitys/player.tscn" id="1_2hxyx"]
 [ext_resource type="Texture2D" uid="uid://b52fckappqh2e" path="res://assets/blocks.png" id="2_s0duk"]
-[ext_resource type="PackedScene" uid="uid://dlrcafqk01g4e" path="res://scenes/Slime.tscn" id="3_3h6yo"]
+[ext_resource type="PackedScene" uid="uid://dlrcafqk01g4e" path="res://scenes/Entitys/Slime.tscn" id="3_3h6yo"]
+[ext_resource type="PackedScene" uid="uid://b35gm064qwoja" path="res://scenes/Items/Coin/coin.tscn" id="4_dar3u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n1ma6"]
 texture = ExtResource("2_s0duk")
@@ -105,3 +106,6 @@ script = SubResource("GDScript_0wiaw")
 [node name="Camera2D" type="Camera2D" parent="player"]
 zoom = Vector2(3.5, 3.5)
 position_smoothing_enabled = true
+
+[node name="Coin" parent="." instance=ExtResource("4_dar3u")]
+position = Vector2(-204, 0)

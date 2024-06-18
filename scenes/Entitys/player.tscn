@@ -69,7 +69,7 @@ sprite_frames = SubResource("SpriteFrames_b8lc6")
 animation = &"idle"
 offset = Vector2(0, 0.5)
 
-[node name="HitboxComponent" parent="." node_paths=PackedStringArray("healthComponent") instance=ExtResource("3_d7814")]
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("healthComponent") groups=["player"] instance=ExtResource("3_d7814")]
 healthComponent = NodePath("HealthComponent")
 
 [node name="HealthComponent" parent="HitboxComponent" instance=ExtResource("4_lkar6")]

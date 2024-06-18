@@ -1,0 +1,61 @@
+[gd_scene load_steps=11 format=3 uid="uid://b35gm064qwoja"]
+
+[ext_resource type="Script" path="res://scripts/coin.gd" id="1_ub2by"]
+[ext_resource type="Texture2D" uid="uid://c15ar8xp3okcj" path="res://assets/items.png" id="1_xppap"]
+[ext_resource type="Resource" uid="uid://dpwc4c7171os4" path="res://scenes/Items/Coin/Coin.tres" id="2_owdp6"]
+[ext_resource type="PackedScene" uid="uid://bjmyjim86esjb" path="res://scenes/Components/pickUp_component.tscn" id="2_y6scw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cim7j"]
+atlas = ExtResource("1_xppap")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ake5"]
+atlas = ExtResource("1_xppap")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n6d1k"]
+atlas = ExtResource("1_xppap")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1iy1m"]
+atlas = ExtResource("1_xppap")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ow61o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cim7j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ake5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n6d1k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1iy1m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_veq7k"]
+radius = 4.0
+
+[node name="Coin" type="Node2D"]
+script = ExtResource("1_ub2by")
+ownItem = ExtResource("2_owdp6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ow61o")
+frame_progress = 0.945644
+
+[node name="PickUpComponent" parent="." instance=ExtResource("2_y6scw")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickUpComponent"]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_veq7k")
+
+[connection signal="area_entered" from="PickUpComponent" to="." method="_on_pick_up_component_area_entered"]

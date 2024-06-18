@@ -8,4 +8,4 @@ script = ExtResource("1_n1m0d")
 name = "coin"
 texture = ExtResource("2_nssru")
 usage = "noUse"
-amount = 99
+amount = 1
