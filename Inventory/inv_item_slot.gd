@@ -2,10 +2,8 @@ extends Panel
 
 @onready var item_visual : Sprite2D = $CenterContainer/Panel/ItemDisplay
 @onready var amountDisplay = $Label
+
 var storedItem : InvItem
-
-
-
 
 func update (item : InvItem):
 	if !item:

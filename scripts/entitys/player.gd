@@ -5,12 +5,14 @@ class_name Player
 const SPEED = 90.0
 
 
-var health = 100
 var maxHP = 100
 var defence = 5
 
+var invunrible = false
+
 @export var weapon : Weapon
 @export var healthbar : HealthBarComponent
+@export var health : HealthComponent
 @export var invPlayer : PlayerInv
 
 @onready var sprite = $AnimatedSprite2D
@@ -24,7 +26,7 @@ var currentAreaToAttack : HitboxComponent= null
 
 func _physics_process(delta):
 	invPlayer.clearUpItems()
-	healthbar.health.health = health
+	healthbar.health.health = health.health
 	sprite.play("idle")
 	
 	if Input.is_action_just_pressed("attack"):
@@ -61,8 +63,14 @@ func _physics_process(delta):
 
 
 
-func _on_button_pressed():
-	print(invPlayer.items)
-	for i in invPlayer.items:
-		if i:
-			print(i.amount)
+func damage(dmg : float , kb : float,direction : Vector2,timeBetweenAttacks:float):
+	if !invunrible:
+		invunrible = true
+		health .health -= dmg
+		print("normal: ",direction.x,"rounded: ",round(direction.x))
+		print("normal: ",direction.y,"rounded: ",round(direction.y))
+		player.velocity.x += round(direction.x) * kb
+		player.velocity.y += round(direction.y) * kb
+		player.move_and_slide()
+		await get_tree().create_timer(timeBetweenAttacks).timeout
+		invunrible = false

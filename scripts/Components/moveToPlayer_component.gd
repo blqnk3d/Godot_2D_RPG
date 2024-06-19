@@ -1,36 +1,43 @@
 extends Node2D
+class_name MoveToPlayerComponent
 
 @export var player : Player
 @export var enemy : CharacterBody2D
-@export var SPEED = 20
+@export var SPEED = 30
 @export var RADIUS_TO_SEARCH  = 50
 
-@onready var shape = $StaticBody2D/CollisionShape2D
+var MIN_DISTANCE = 10
+
+@onready var shape = $Area2D/CollisionShape2D
 # Called when the node enters the scene tree for the first time.
+
+var test = Vector2(0,0)
+
 func _ready():
 	shape.shape.extents = Vector2(RADIUS_TO_SEARCH, RADIUS_TO_SEARCH)
 
+var target = null
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if abs(enemy.position.y - player.position.y) > RADIUS_TO_SEARCH or abs(enemy.position.x - player.position.x) > RADIUS_TO_SEARCH :
-		return
-	if abs(player.position.x - enemy.position.x) + abs(player.position.y - enemy.position.y) < 10:
-		return 
-		
-	if enemy.position.y - player.position.y > 10:
-		enemy.velocity.y = -1 * SPEED
-	elif enemy.position.y - player.position.y < -10:
-		enemy.velocity.y = 1 * SPEED
-	else :
-		enemy.velocity.y = move_toward(enemy.velocity.y, 0, SPEED)
-	
-	if enemy.position.x - player.position.x > 10:
-		enemy.velocity.x = -1 * SPEED
-	elif enemy.position.x - player.position.x < -10:
-		enemy.velocity.x = 1 * SPEED
+	if target and enemy.position.distance_to(player.position) > MIN_DISTANCE:
+		test = enemy.position.direction_to(player.position)
+		enemy.velocity = enemy.position.direction_to(player.position) * SPEED 
 	else:
-		enemy.velocity.x = move_toward(enemy.velocity.x, 0, SPEED)
+		enemy.velocity = Vector2.ZERO
 	enemy.move_and_slide()
+
+
 	
-	
-	
+func quare(x):
+	return x * x 
+
+
+func _on_area_2d_area_entered(area):
+	if area.is_in_group("player"):
+		target = area.get_parent() # Replace with function body.
+
+
+func _on_area_2d_area_exited(area):
+	if area.is_in_group("player"):
+		target = null # Replace with function body.

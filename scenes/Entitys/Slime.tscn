@@ -1,10 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://dlrcafqk01g4e"]
+[gd_scene load_steps=9 format=3 uid="uid://dlrcafqk01g4e"]
 
 [ext_resource type="Script" path="res://scripts/entitys/Slime.gd" id="1_u8oys"]
-[ext_resource type="PackedScene" uid="uid://c7gy5cmgru4mt" path="res://scenes/Components/health_component.tscn" id="1_wf46v"]
-[ext_resource type="PackedScene" uid="uid://c6hslp0sthus8" path="res://scenes/Components/hitbox_component.tscn" id="2_6jvoj"]
 [ext_resource type="Texture2D" uid="uid://bpx2bxyaysveu" path="res://assets/enemys.png" id="3_w783j"]
-[ext_resource type="PackedScene" uid="uid://bjteu4yeri36s" path="res://scenes/Components/health_bar_component.tscn" id="5_3rgcl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2j8vi"]
 atlas = ExtResource("3_w783j")
@@ -42,35 +39,21 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_oupc6"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jw8uh"]
 size = Vector2(16, 10)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e7lkx"]
-size = Vector2(12, 8)
 
 [node name="Slime" type="CharacterBody2D" node_paths=PackedStringArray("sprite")]
 script = ExtResource("1_u8oys")
 sprite = NodePath("AnimatedSprite2D")
-
-[node name="HealthBarComponent" parent="." node_paths=PackedStringArray("health") instance=ExtResource("5_3rgcl")]
-modulate = Color(1, 0, 0, 1)
-position = Vector2(0, 10)
-health = NodePath("../HealthComponent")
-
-[node name="HealthComponent" parent="." instance=ExtResource("1_wf46v")]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0.5, 0)
 sprite_frames = SubResource("SpriteFrames_finev")
 frame_progress = 0.835438
 
-[node name="HitboxComponent" parent="." node_paths=PackedStringArray("healthComponent") instance=ExtResource("2_6jvoj")]
-healthComponent = NodePath("../HealthComponent")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
-position = Vector2(0, 3)
-shape = SubResource("RectangleShape2D_oupc6")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 4)
-shape = SubResource("RectangleShape2D_e7lkx")
+light_mask = 2
+visibility_layer = 2
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_jw8uh")
+disabled = true

@@ -3,13 +3,15 @@
 [ext_resource type="Script" path="res://scripts/Components/moveToPlayer_component.gd" id="1_2ivo8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e7v5p"]
+size = Vector2(172, 162)
 
 [node name="MoveToPlayerComponent" type="Node2D"]
 script = ExtResource("1_2ivo8")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-collision_layer = 2
-collision_mask = 2
+[node name="Area2D" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_e7v5p")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
