@@ -58,3 +58,11 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	move_and_slide()
+
+
+
+func _on_button_pressed():
+	print(invPlayer.items)
+	for i in invPlayer.items:
+		if i:
+			print(i.amount)

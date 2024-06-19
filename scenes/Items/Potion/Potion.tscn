@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://ci5n34ja0mhh7"]
 
-[ext_resource type="Script" path="res://scripts/Potion.gd" id="1_08anh"]
 [ext_resource type="PackedScene" uid="uid://bjmyjim86esjb" path="res://scenes/Components/pickUp_component.tscn" id="1_jpqjb"]
 [ext_resource type="Texture2D" uid="uid://c15ar8xp3okcj" path="res://assets/items.png" id="1_l82gl"]
+[ext_resource type="Script" path="res://scripts/items/Potion.gd" id="1_m2f4q"]
 [ext_resource type="Resource" uid="uid://digao3xppewh" path="res://scenes/Items/Potion/Potion.tres" id="2_low5a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6nvrd"]
@@ -24,7 +24,7 @@ animations = [{
 radius = 5.0
 
 [node name="Potion" type="Node2D"]
-script = ExtResource("1_08anh")
+script = ExtResource("1_m2f4q")
 ownItem = ExtResource("2_low5a")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

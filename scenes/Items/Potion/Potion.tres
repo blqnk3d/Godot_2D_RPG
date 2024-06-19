@@ -9,3 +9,4 @@ name = "Potion"
 texture = ExtResource("2_3xb7k")
 usage = "heal1"
 amount = 3
+saveAmount = 3

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://caq1gfx0ruiwq"]
+
+[ext_resource type="Script" path="res://scripts/Components/moveToPlayer_component.gd" id="1_2ivo8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e7v5p"]
+
+[node name="MoveToPlayerComponent" type="Node2D"]
+script = ExtResource("1_2ivo8")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_e7v5p")

@@ -146,20 +146,4 @@ text = "Debug"
 [node name="Coin" parent="." instance=ExtResource("5_nsfqg")]
 position = Vector2(-276, -59)
 
-[node name="Slime4" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("3_3h6yo")]
-position = Vector2(20, -93)
-sprite = NodePath("../Slime2/AnimatedSprite2D")
-
-[node name="MoveToPlayerComponent" parent="Slime4" node_paths=PackedStringArray("player", "enemy") instance=ExtResource("3_mqu08")]
-player = NodePath("../../player")
-enemy = NodePath("..")
-
-[node name="Slime5" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("3_3h6yo")]
-position = Vector2(11, -122)
-sprite = NodePath("../Slime2/AnimatedSprite2D")
-
-[node name="MoveToPlayerComponent" parent="Slime5" node_paths=PackedStringArray("player", "enemy") instance=ExtResource("3_mqu08")]
-player = NodePath("../../player")
-enemy = NodePath("..")
-
 [connection signal="pressed" from="Button" to="player" method="_on_button_pressed"]

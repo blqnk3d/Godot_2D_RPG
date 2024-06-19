@@ -7,5 +7,6 @@
 script = ExtResource("1_0p56e")
 name = "coin"
 texture = ExtResource("2_o7sx5")
-usage = "heal1"
+usage = "noUse"
 amount = 1
+saveAmount = 1
