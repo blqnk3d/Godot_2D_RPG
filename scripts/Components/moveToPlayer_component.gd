@@ -28,6 +28,7 @@ func _process(delta):
 	enemy.move_and_slide()
 
 
+
 	
 func quare(x):
 	return x * x 

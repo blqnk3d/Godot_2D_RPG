@@ -1,10 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://crsy26lmc6qfh"]
+[gd_scene load_steps=20 format=3 uid="uid://crsy26lmc6qfh"]
 
 [ext_resource type="PackedScene" uid="uid://bu8760t64vcka" path="res://scenes/Entitys/player.tscn" id="1_2hxyx"]
 [ext_resource type="Texture2D" uid="uid://b52fckappqh2e" path="res://assets/blocks.png" id="2_s0duk"]
 [ext_resource type="PackedScene" uid="uid://c7gy5cmgru4mt" path="res://scenes/Components/health_component.tscn" id="3_2icrc"]
 [ext_resource type="PackedScene" uid="uid://dlrcafqk01g4e" path="res://scenes/Entitys/Slime.tscn" id="3_3h6yo"]
 [ext_resource type="PackedScene" uid="uid://caq1gfx0ruiwq" path="res://scenes/Components/moveToPlayer_component.tscn" id="3_mqu08"]
+[ext_resource type="PackedScene" uid="uid://cccqfxohwfsou" path="res://scenes/Entitys/goblin.tscn" id="3_u4p33"]
 [ext_resource type="Script" path="res://scripts/Components/attack_component.gd" id="4_ihea4"]
 [ext_resource type="PackedScene" uid="uid://bjteu4yeri36s" path="res://scenes/Components/health_bar_component.tscn" id="5_lwcad"]
 [ext_resource type="PackedScene" uid="uid://c6hslp0sthus8" path="res://scenes/Components/hitbox_component.tscn" id="6_gtbau"]
@@ -124,8 +125,17 @@ script = SubResource("GDScript_0wiaw")
 zoom = Vector2(3.5, 3.5)
 position_smoothing_enabled = true
 
+[node name="Goblin" parent="." instance=ExtResource("3_u4p33")]
+position = Vector2(-136, 64)
+
+[node name="MoveToPlayerComponent" parent="Goblin" node_paths=PackedStringArray("player", "enemy") instance=ExtResource("3_mqu08")]
+player = NodePath("../../player")
+enemy = NodePath("..")
+SPEED = 40
+RADIUS_TO_SEARCH = 30
+
 [node name="Slime2" parent="." instance=ExtResource("3_3h6yo")]
-position = Vector2(-41, -193)
+position = Vector2(27, -169)
 
 [node name="AttackComponent" type="Node2D" parent="Slime2"]
 script = ExtResource("4_ihea4")
@@ -188,7 +198,7 @@ rotation = -2.52673
 position = Vector2(-171, -52)
 
 [node name="Slime3" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("3_3h6yo")]
-position = Vector2(-48, -89)
+position = Vector2(27, -54)
 sprite = NodePath("../Slime2/AnimatedSprite2D")
 
 [node name="AttackComponent" type="Node2D" parent="Slime3"]
@@ -227,7 +237,7 @@ position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_bv52t")
 
 [node name="Slime" parent="." instance=ExtResource("3_3h6yo")]
-position = Vector2(109, 4)
+position = Vector2(24, 64)
 
 [node name="HealthBarComponent" parent="Slime" node_paths=PackedStringArray("health") instance=ExtResource("5_lwcad")]
 modulate = Color(1, 0, 0, 1)
