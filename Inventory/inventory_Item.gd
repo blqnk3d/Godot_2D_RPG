@@ -3,25 +3,22 @@ extends Resource
 class_name InvItem
 @export var name : String = ""
 @export var texture : Texture2D
-@export_enum("heal1","heal2","heal3","noUse") var usage :String 
-@export var amount : int
+@export_enum("heal1","heal2","heal3","coin") var usage :String 
+@export var amount  = 1
 
-@export var saveAmount : int # If possible temp
 
 
 func use():
-	if  usage == "noUse":
+	if  usage == "coin":
 		print("cant be used")
 		return
 	elif usage == "heal1":
-		print("should have healt 10hp")
-	
+		print("should have healed 10hp")
+
 	if amount  <= 0 :
 		return
 	else:
 		amount -= 1
 	
 	
-func resetAmount():
-	amount = saveAmount
-	
+

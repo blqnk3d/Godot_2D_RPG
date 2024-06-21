@@ -20,7 +20,6 @@ func update (item : InvItem):
 
 func _on_button_pressed():
 	if storedItem and storedItem.amount >= 1:
-		print(storedItem.amount)
 		storedItem.use()
 	
 		

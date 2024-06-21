@@ -67,8 +67,6 @@ func damage(dmg : float , kb : float,direction : Vector2,timeBetweenAttacks:floa
 	if !invunrible:
 		invunrible = true
 		health .health -= dmg
-		print("normal: ",direction.x,"rounded: ",round(direction.x))
-		print("normal: ",direction.y,"rounded: ",round(direction.y))
 		player.velocity.x += round(direction.x) * kb
 		player.velocity.y += round(direction.y) * kb
 		player.move_and_slide()

@@ -1,5 +1,6 @@
 extends Node2D
 
+class_name Potion
 
 @export var ownItem : InvItem
 

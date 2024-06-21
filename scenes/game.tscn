@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://crsy26lmc6qfh"]
+[gd_scene load_steps=17 format=3 uid="uid://crsy26lmc6qfh"]
 
 [ext_resource type="PackedScene" uid="uid://bu8760t64vcka" path="res://scenes/Entitys/player.tscn" id="1_2hxyx"]
 [ext_resource type="Texture2D" uid="uid://b52fckappqh2e" path="res://assets/blocks.png" id="2_s0duk"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://bjteu4yeri36s" path="res://scenes/Components/health_bar_component.tscn" id="5_lwcad"]
 [ext_resource type="PackedScene" uid="uid://c6hslp0sthus8" path="res://scenes/Components/hitbox_component.tscn" id="6_gtbau"]
 [ext_resource type="PackedScene" uid="uid://b44hlqgy4na54" path="res://scenes/Components/attacking_component.tscn" id="7_if1qn"]
+[ext_resource type="PackedScene" uid="uid://ci5n34ja0mhh7" path="res://scenes/Items/Potion/Potion.tscn" id="10_rebcp"]
+[ext_resource type="PackedScene" uid="uid://b35gm064qwoja" path="res://scenes/Items/Coin/coin.tscn" id="11_sjc4h"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n1ma6"]
 texture = ExtResource("2_s0duk")
@@ -89,7 +91,7 @@ sources/1 = SubResource("TileSetAtlasSource_n1ma6")
 [sub_resource type="GDScript" id="GDScript_0wiaw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_udu40"]
-size = Vector2(20, 14)
+size = Vector2(20, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bv52t"]
 size = Vector2(20, 15)
@@ -144,7 +146,7 @@ moveToPlayer = NodePath("../MoveToPlayerComponent")
 attackComponent = NodePath("../AttackComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Slime2/AttackingComponent"]
-position = Vector2(0, 3)
+position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_udu40")
 
 [node name="HitboxComponent" parent="Slime2" node_paths=PackedStringArray("healthComponent") instance=ExtResource("6_gtbau")]
@@ -155,3 +157,28 @@ light_mask = 2
 visibility_layer = 2
 position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_bv52t")
+
+[node name="Potion" parent="." instance=ExtResource("10_rebcp")]
+position = Vector2(-215, -86)
+
+[node name="Potion2" parent="." instance=ExtResource("10_rebcp")]
+position = Vector2(-171, -52)
+
+[node name="Coin3" parent="." instance=ExtResource("11_sjc4h")]
+position = Vector2(-121, -65)
+
+[node name="Potion3" parent="." instance=ExtResource("10_rebcp")]
+position = Vector2(-132, -30)
+
+[node name="Coin" parent="." instance=ExtResource("11_sjc4h")]
+position = Vector2(-143, -58)
+
+[node name="Coin2" parent="." instance=ExtResource("11_sjc4h")]
+position = Vector2(-94, -65)
+
+[node name="Coin4" parent="." instance=ExtResource("11_sjc4h")]
+position = Vector2(-101, -92)
+rotation = -2.52673
+
+[node name="Potion4" parent="." instance=ExtResource("10_rebcp")]
+position = Vector2(-171, -52)
