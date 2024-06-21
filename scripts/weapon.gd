@@ -13,7 +13,7 @@ func _ready():
 func damage():
 	if  sprite and currentArea != null :
 		sprite.play("attack")
-		await get_tree().create_timer(0.5).timeout
+		await get_tree().create_timer(0.3).timeout
 		if currentArea != null:
 			currentArea.damage(attack.attackDmg)
 		sprite.play("idle")
@@ -25,3 +25,7 @@ func damage():
 func _on_area_2d_area_entered(area):
 	if  area is HitboxComponent:
 		currentArea  = area
+
+
+func _on_area_2d_area_exited(area):
+	area = null

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://crsy26lmc6qfh"]
+[gd_scene load_steps=17 format=3 uid="uid://crsy26lmc6qfh"]
 
 [ext_resource type="PackedScene" uid="uid://bu8760t64vcka" path="res://scenes/Entitys/player.tscn" id="1_2hxyx"]
 [ext_resource type="Texture2D" uid="uid://b52fckappqh2e" path="res://assets/blocks.png" id="2_s0duk"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://b44hlqgy4na54" path="res://scenes/Components/attacking_component.tscn" id="7_if1qn"]
 [ext_resource type="PackedScene" uid="uid://ci5n34ja0mhh7" path="res://scenes/Items/Potion/Potion.tscn" id="10_rebcp"]
 [ext_resource type="PackedScene" uid="uid://b35gm064qwoja" path="res://scenes/Items/Coin/coin.tscn" id="11_sjc4h"]
-[ext_resource type="PackedScene" uid="uid://cvlar5mhenqag" path="res://scenes/Components/attack_component.tscn" id="12_wsyr5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n1ma6"]
 texture = ExtResource("2_s0duk")
@@ -96,9 +95,6 @@ size = Vector2(20, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bv52t"]
 size = Vector2(20, 15)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4x0t1"]
-size = Vector2(16, 10)
 
 [node name="Game" type="Node2D"]
 position = Vector2(0, -1)
@@ -186,76 +182,3 @@ rotation = -2.52673
 
 [node name="Potion4" parent="." instance=ExtResource("10_rebcp")]
 position = Vector2(-171, -52)
-
-[node name="Slime3" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("3_3h6yo")]
-position = Vector2(-48, -89)
-sprite = NodePath("../Slime2/AnimatedSprite2D")
-
-[node name="AttackComponent" type="Node2D" parent="Slime3"]
-script = ExtResource("4_ihea4")
-attackDmg = 10.0
-knockback = 300.0
-timeBetweenAttack = 0.2
-
-[node name="HealthComponent" parent="Slime3" instance=ExtResource("3_2icrc")]
-
-[node name="MoveToPlayerComponent" parent="Slime3" node_paths=PackedStringArray("player", "enemy") instance=ExtResource("3_mqu08")]
-player = NodePath("../../player")
-enemy = NodePath("..")
-
-[node name="HealthBarComponent" parent="Slime3" node_paths=PackedStringArray("health") instance=ExtResource("5_lwcad")]
-modulate = Color(0.658824, 0, 0, 1)
-self_modulate = Color(0.658824, 0, 0, 1)
-position = Vector2(0, 13)
-health = NodePath("../HealthComponent")
-
-[node name="AttackingComponent" parent="Slime3" node_paths=PackedStringArray("moveToPlayer", "attackComponent") instance=ExtResource("7_if1qn")]
-moveToPlayer = NodePath("../MoveToPlayerComponent")
-attackComponent = NodePath("../AttackComponent")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Slime3/AttackingComponent"]
-position = Vector2(0, 3.5)
-shape = SubResource("RectangleShape2D_udu40")
-
-[node name="HitboxComponent" parent="Slime3" node_paths=PackedStringArray("healthComponent") instance=ExtResource("6_gtbau")]
-healthComponent = NodePath("../HealthComponent")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Slime3/HitboxComponent"]
-light_mask = 2
-visibility_layer = 2
-position = Vector2(0, 2.5)
-shape = SubResource("RectangleShape2D_bv52t")
-
-[node name="Slime" parent="." instance=ExtResource("3_3h6yo")]
-position = Vector2(109, 4)
-
-[node name="HealthBarComponent" parent="Slime" node_paths=PackedStringArray("health") instance=ExtResource("5_lwcad")]
-modulate = Color(1, 0, 0, 1)
-self_modulate = Color(1, 0, 0, 1)
-position = Vector2(0, 10)
-health = NodePath("../HealthComponent")
-
-[node name="AttackingComponent" parent="Slime" node_paths=PackedStringArray("moveToPlayer", "attackComponent") instance=ExtResource("7_if1qn")]
-moveToPlayer = NodePath("../MoveToPlayerComponent")
-attackComponent = NodePath("../AttackComponent")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Slime/AttackingComponent"]
-position = Vector2(0, 3)
-shape = SubResource("RectangleShape2D_4x0t1")
-
-[node name="AttackComponent" parent="Slime" instance=ExtResource("12_wsyr5")]
-attackDmg = 1.0
-
-[node name="HealthComponent" parent="Slime" instance=ExtResource("3_2icrc")]
-
-[node name="HitboxComponent" parent="Slime" node_paths=PackedStringArray("healthComponent", "attackComponent") instance=ExtResource("6_gtbau")]
-healthComponent = NodePath("../HealthComponent")
-attackComponent = NodePath("../AttackComponent")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Slime/HitboxComponent"]
-position = Vector2(0, 3)
-shape = SubResource("RectangleShape2D_4x0t1")
-
-[node name="MoveToPlayerComponent" parent="Slime" node_paths=PackedStringArray("player", "enemy") instance=ExtResource("3_mqu08")]
-player = NodePath("../../player")
-enemy = NodePath("..")
