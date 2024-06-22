@@ -10,8 +10,8 @@ script = ExtResource("1_jys0n")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 material = SubResource("CanvasItemMaterial_rimlv")
-offset_left = -12.5
-offset_top = -1.0
-offset_right = 12.5
-offset_bottom = 5.0
+offset_left = -12.0
+offset_top = 10.0
+offset_right = 13.0
+offset_bottom = 16.0
 show_percentage = false

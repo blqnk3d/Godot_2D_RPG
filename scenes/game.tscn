@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://crsy26lmc6qfh"]
+[gd_scene load_steps=22 format=3 uid="uid://crsy26lmc6qfh"]
 
 [ext_resource type="PackedScene" uid="uid://bu8760t64vcka" path="res://scenes/Entitys/player.tscn" id="1_2hxyx"]
 [ext_resource type="Texture2D" uid="uid://b52fckappqh2e" path="res://assets/blocks.png" id="2_s0duk"]
@@ -92,6 +92,12 @@ sources/1 = SubResource("TileSetAtlasSource_n1ma6")
 
 [sub_resource type="GDScript" id="GDScript_0wiaw"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ndbpq"]
+size = Vector2(14, 21)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vjxt0"]
+radius = 14.1421
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_udu40"]
 size = Vector2(20, 15)
 
@@ -128,11 +134,36 @@ position_smoothing_enabled = true
 [node name="Goblin" parent="." instance=ExtResource("3_u4p33")]
 position = Vector2(-136, 64)
 
+[node name="AttackComponent" parent="Goblin" instance=ExtResource("12_wsyr5")]
+attackDmg = 5.0
+knockback = 500.0
+timeBetweenAttack = 0.5
+
+[node name="HitboxComponent" parent="Goblin" node_paths=PackedStringArray("healthComponent", "attackComponent") instance=ExtResource("6_gtbau")]
+healthComponent = NodePath("../HealthComponent")
+attackComponent = NodePath("../AttackComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goblin/HitboxComponent"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_ndbpq")
+
 [node name="MoveToPlayerComponent" parent="Goblin" node_paths=PackedStringArray("player", "enemy") instance=ExtResource("3_mqu08")]
 player = NodePath("../../player")
 enemy = NodePath("..")
 SPEED = 40
 RADIUS_TO_SEARCH = 30
+
+[node name="HealthBarComponent" parent="Goblin" node_paths=PackedStringArray("health") instance=ExtResource("5_lwcad")]
+health = NodePath("../HealthComponent")
+
+[node name="HealthComponent" parent="Goblin" instance=ExtResource("3_2icrc")]
+
+[node name="AttackingComponent" parent="Goblin" node_paths=PackedStringArray("moveToPlayer", "attackComponent") instance=ExtResource("7_if1qn")]
+moveToPlayer = NodePath("../MoveToPlayerComponent")
+attackComponent = NodePath("../AttackComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goblin/AttackingComponent"]
+shape = SubResource("CircleShape2D_vjxt0")
 
 [node name="Slime2" parent="." instance=ExtResource("3_3h6yo")]
 position = Vector2(27, -169)
@@ -216,7 +247,7 @@ enemy = NodePath("..")
 [node name="HealthBarComponent" parent="Slime3" node_paths=PackedStringArray("health") instance=ExtResource("5_lwcad")]
 modulate = Color(0.658824, 0, 0, 1)
 self_modulate = Color(0.658824, 0, 0, 1)
-position = Vector2(0, 13)
+position = Vector2(0, 1)
 health = NodePath("../HealthComponent")
 
 [node name="AttackingComponent" parent="Slime3" node_paths=PackedStringArray("moveToPlayer", "attackComponent") instance=ExtResource("7_if1qn")]
@@ -242,7 +273,7 @@ position = Vector2(24, 64)
 [node name="HealthBarComponent" parent="Slime" node_paths=PackedStringArray("health") instance=ExtResource("5_lwcad")]
 modulate = Color(1, 0, 0, 1)
 self_modulate = Color(1, 0, 0, 1)
-position = Vector2(0, 10)
+position = Vector2(0, 4)
 health = NodePath("../HealthComponent")
 
 [node name="AttackingComponent" parent="Slime" node_paths=PackedStringArray("moveToPlayer", "attackComponent") instance=ExtResource("7_if1qn")]
@@ -267,5 +298,6 @@ position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_4x0t1")
 
 [node name="MoveToPlayerComponent" parent="Slime" node_paths=PackedStringArray("player", "enemy") instance=ExtResource("3_mqu08")]
+position = Vector2(0, 4)
 player = NodePath("../../player")
 enemy = NodePath("..")

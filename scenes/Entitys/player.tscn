@@ -58,7 +58,6 @@ MAX_HEALTH = 100.0
 
 [node name="HealthBarComponent" parent="." node_paths=PackedStringArray("health") instance=ExtResource("2_2p0w6")]
 modulate = Color(0, 0, 0, 1)
-position = Vector2(0, -14)
 health = NodePath("../HealthComponent")
 
 [node name="Weapon" parent="." instance=ExtResource("6_kvct1")]
